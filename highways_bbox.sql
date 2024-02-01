@@ -11,6 +11,7 @@ SELECT
     n.tags -> 'cycleway:right' AS "cycleway:right",
     n.tags -> 'cycleway:left' AS "cycleway:left",
     n.tags -> 'cycleway:both' AS "cycleway:both",
+    n.tags -> 'segregated' AS segregated,
     n.tags -> 'cyclestreet' AS cyclestreet,
     n.tags -> 'bicycle_road' AS bicycle_road,
     n.tags -> 'is_sidepath' AS is_sidepath,
@@ -25,5 +26,4 @@ FROM
                                )
 WHERE
     n.highway IS NOT NULL AND
-    --hier beliebigen Gemeindenamen eingeben
     g."GEN" = 'Leipzig';
