@@ -20,6 +20,8 @@ Die relevantesten Tabellen der OSM-Daten:
 
 - Gemeindedaten: `vg250_gem`
 
+Die Geometrien sind unter der Spalte `way` im WKB-Format `EPSG:4326` hinterlegt. Die Geometrie lässt sich mit `ST_AsText(way)` ins WKT-Format umwandeln.
+
 Zur Auflistung aller Spalten einer Datenbank, nutze:
 
 ```
