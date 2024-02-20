@@ -6,6 +6,59 @@ Hier werden nützliche Queries zur Abfrage in QGIS (oder in DBMS) gesammelt.
 
 Siehe E-Mail vom 01.02.2024. Ansonsten lieb bei Teams fragen :)
 
+## Aufbau der OSM-Datenbank
+
+Die relevantesten Tabellen der OSM-Daten:
+
+- Punkte (Nodes mit Attributen): `planet_osm_point`
+- Linienelemente: `planet_osm_line`
+- Polygone: `planet_osm_polygon`
+
+- Nodes (nur OSM-ID mit Koordinaten): `planet_osm_nodes` 
+- Ways: `planet_osm_ways`
+- Relationen: `planet_osm_rels`
+
+- Gemeindedaten: `vg250_gem`
+
+Zur Auflistung aller Spalten einer Datenbank, nutze:
+
+```
+SELECT column_name, data_type
+FROM information_schema.columns
+WHERE table_schema = 'public' AND table_name = '[TABELLENNAME]';
+```
+
+## OSM-Tags auswählen und verwenden
+
+Erfahrungsgemäß ist das Abrufen aller OSM-Daten mit allen Spalten rechen- und speicherintensiv.
+Viele Tags werden demnach im HStore-Format unter der Spalte `tags` abgelegt. Veranschaulicht wird das an folgendem Beispiel:
+
+```
+traffic_signals=signal
+traffic_sign=DE:240
+lane:width=3,5
+```
+
+
+Im HStore-Format sehen die Key-Value-Paare wie folgt aus:
+
+`traffic_signals => signal; traffic_sign => DE:240; lane:width => 3,5`
+
+Einzelnte kv-Paare ruft man wie folgt mit PostgreSQL ab - im folgenden Beispiel für alle Straßen:
+
+```
+SELECT
+    l.osm_id,
+    l.highway,
+    l.way,
+    l.tags -> 'traffic_signals' AS traffic_signals,
+    l.tags -> 'traffic_sign' AS traffic_sign
+    l.tags -> 'lane:width' AS lane_width
+FROM
+planet_osm_line
+LIMIT 10;
+```
+
 
 ## OSM-Daten innerhalb einer bounding box abrufen
 
