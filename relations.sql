@@ -1,11 +1,11 @@
 SELECT 
 
     w.osm_id,
-	w.highway,
+    w.highway,
     st_setsrid(w.way, 3857) as geom,
     n.id as relation_id,
     rel_ways,
-    n.tags::hstore
+    n.tags::hstore::varchar
 
 FROM 
 
