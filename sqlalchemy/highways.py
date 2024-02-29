@@ -35,7 +35,9 @@ try:
     osm_lines = s.query(PlanetOsmLine.osm_id,
                         PlanetOsmLine.highway,
                         func.St_AsText(PlanetOsmLine.way).label('way_wkt'))
-                        ).all()
+                        ).
+                        filter(PlanetOsmLine.highway.isnot(None)).
+                        all()
 
 except Exception as e:
     print(f"Error occurred: {e}")
