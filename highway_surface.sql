@@ -1,7 +1,7 @@
 SELECT
     n.osm_id,
     n.surface,
-    n.tags -> 'smoothness' AS smoothness,
+    n.tags -> 'surface' AS surface,
     n.tags -> 'sidewalk:both:surface' AS "sidewalk:both:surface",
     n.tags -> 'cycleway:surface' AS "cycleway:surface",
     n.tags -> 'footway:surface' AS "footway:surface",
@@ -39,7 +39,7 @@ FROM
                                )
 WHERE
     (
-	n.tags ? 'smoothness' OR
+	n.tags ? 'surface' OR
     n.tags ? 'sidewalk:both:surface' OR
     n.tags ? 'cycleway:surface' OR
     n.tags ? 'footway:surface' OR
