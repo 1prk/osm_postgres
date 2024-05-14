@@ -64,4 +64,4 @@ WHERE
     n.tags ? 'shoulder:left:surface' OR
     n.tags ? 'parking:lane:both:surface')
 	AND n.highway IS NOT NULL AND
-    g."GEN" = 'Leipzig';
+    g."GEN" IN ('Bietigheim-Bissingen', 'Cottbus', 'Dresden', 'Eschborn', 'Freiburg', 'Freising', 'Leipzig', 'Lüchow-Danneberg', 'Offenburg', 'Wedel', 'Weimar');
