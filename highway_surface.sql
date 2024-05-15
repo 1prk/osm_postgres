@@ -63,6 +63,7 @@ WHERE
     n.tags ? 'bus_bay:surface' OR
     n.tags ? 'shoulder:left:surface' OR
     n.tags ? 'parking:lane:both:surface')
-	AND n.highway IS NOT NULL AND
+	AND n.highway IS NOT NULL 
+    AND n.surface IS NOT NULL
     (g."GEN" IN ('Bietigheim-Bissingen', 'Cottbus', 'Dresden', 'Eschborn', 'Freiburg im Breisgau', 'Freising', 'Leipzig', 'Offenburg', 'Wedel', 'Weimar')
 	OR g."ARS" LIKE '03354%');
