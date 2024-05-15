@@ -65,5 +65,7 @@ WHERE
     n.tags ? 'parking:lane:both:surface')
 	AND n.highway IS NOT NULL 
     AND n.surface IS NOT NULL
-    (g."GEN" IN ('Bietigheim-Bissingen', 'Cottbus', 'Dresden', 'Eschborn', 'Freiburg im Breisgau', 'Freising', 'Leipzig', 'Offenburg', 'Wedel', 'Weimar')
-	OR g."ARS" LIKE '03354%');
+    AND (g."GEN" IN ('Bietigheim-Bissingen', 'Cottbus', 'Dresden',
+     'Eschborn', 'Freiburg im Breisgau', 'Freising',
+      'Leipzig', 'Offenburg', 'Wedel', 'Weimar')
+	OR g."ARS" LIKE '03354%'); -- ARS für LK Lüchow-Dannenberg
